@@ -1,0 +1,35 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".activity.MenuActivity">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/md_white_1000">
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:dividerHeight="10dp"
+            android:id="@+id/listMenu"
+            android:background="#ffffff" />
+        <com.agrawalsuneet.dotsloader.ui.LazyLoader
+            android:id="@+id/lazyLoaderMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="50dp"
+            android:screenOrientation="portrait"
+            android:background="@null"
+            app:all_dotsColor="@color/blue"
+            app:all_dotsDist="6dp"
+            app:all_dotsRadius="5dp"
+            app:lazyloader_firstDelayDur="200"
+            app:lazyloader_secondDelayDur="300" />
+    </RelativeLayout>
+
+</RelativeLayout>
