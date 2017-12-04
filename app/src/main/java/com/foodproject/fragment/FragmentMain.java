@@ -59,7 +59,7 @@ public class FragmentMain extends Fragment {
         MenuActivity activity=(MenuActivity)getActivity();
         String resId=activity.getResturantId();
         ArrayList<ProductModel> subMenuList=activity.getMenuId();
-      //  getSubMenu(resId,subMenuList.get(sectionNumber).getMenuId());
+        getSubMenu(resId,subMenuList.get(sectionNumber).getMenuId());
         Log.d("MYMENU",resId+"\t"+subMenuList);
 
         return rootView;
