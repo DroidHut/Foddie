@@ -14,7 +14,7 @@ public class ProductModel {
     String subMenuName;
     String subMenuImage;
     String subMenuId;
-    int subMenuPrice;
+    float subMenuPrice;
     int star;
 
     public String getName() {
@@ -113,11 +113,11 @@ public class ProductModel {
         this.subMenuImage = subMenuImage;
     }
 
-    public int getSubMenuPrice() {
+    public float getSubMenuPrice() {
         return subMenuPrice;
     }
 
-    public void setSubMenuPrice(int subMenuPrice) {
+    public void setSubMenuPrice(float subMenuPrice) {
         this.subMenuPrice = subMenuPrice;
     }
 

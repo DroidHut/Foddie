@@ -104,21 +104,19 @@ public class CustomAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 String itemId = productModelArrayList.get(position).getId();
-               if(!itemId.isEmpty()){
-                    Activity activity=(Activity) context;
-                   //Toast.makeText(ProductActivity.this,itemId+"",Toast.LENGTH_SHORT).show();
+                if (!itemId.isEmpty()) {
+                    Activity activity = (Activity) context;
+              
                     Intent intent = new Intent(activity, MenuActivity.class);
-                     intent.putExtra("Id", itemId);
+                    intent.putExtra("Id", itemId);
                     activity.startActivity(intent);
-                }else{
-                   // Toast.makeText(ProductActivity.this,"NULL ITEM ID",Toast.LENGTH_SHORT).show();
-               }
+                }
 
 
             }
 
         });
-        
+
         return convertView;
     }
 

@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +38,8 @@ public class MenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_menu);
 
         id = getIntent().getStringExtra("Id");
@@ -49,7 +52,7 @@ public class MenuActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         //  getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
@@ -61,9 +64,16 @@ public class MenuActivity extends AppCompatActivity {
     public String getResturantId() {
         return id;
     }
-
-    public ArrayList<ProductModel> getMenuId() {
-        return getMenu(id);
+    
+    private ArrayList<String> array=new ArrayList<>();
+    public ArrayList<String> getMenuIdList() {
+    
+        for (int i = 0; i <getMenu(id).size(); i++) {
+            array.add(i,getMenu(id).get(i).getMenuId());
+            Log.d("GETMENU",array.get(i));
+        }
+        return array;
+     
     }
 
     private void setupViewPager(ViewPager viewPager, ArrayList<ProductModel> arrayList) {
@@ -75,9 +85,11 @@ public class MenuActivity extends AppCompatActivity {
                 FragmentMain fView = new FragmentMain();
                 adapter.addFrag(fView, arrayList.get(i).getMenuName());
                 Log.d("TAB TITLE", arrayList.get(i).getMenuName());
+
                 viewPager.setAdapter(adapter);
             }
-            
+
+
         } catch (NullPointerException e) {
             e.printStackTrace();
             Toast.makeText(this, "NULLLL", Toast.LENGTH_SHORT).show();

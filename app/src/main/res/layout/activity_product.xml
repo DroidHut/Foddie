@@ -37,8 +37,7 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/md_white_1000"
-            android:layout_margin="5dp">
+            android:background="@color/md_white_1000">
             <ListView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -46,7 +45,7 @@
                 android:dividerHeight="8dp"
                 android:id="@+id/list"
                 tools:listitem="@layout/menuitem_layout"
-                android:background="#ffffff" />
+                android:background="#dedede" />
           <com.agrawalsuneet.dotsloader.ui.LazyLoader
                 android:id="@+id/lazyLoader"
                 android:layout_width="wrap_content"

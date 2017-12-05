@@ -8,14 +8,19 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/md_white_1000">
-        <ListView
+        android:background="#dedede">
+        <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="@null"
-            android:dividerHeight="10dp"
             android:id="@+id/listMenu"
             android:background="#ffffff" />
+        <TextView
+            android:id="@+id/textList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="40dp"
+            android:layout_centerInParent="true"
+            android:textStyle="bold" />
         <com.agrawalsuneet.dotsloader.ui.LazyLoader
             android:id="@+id/lazyLoaderMenu"
             android:layout_width="wrap_content"
@@ -30,6 +35,7 @@
             app:all_dotsRadius="5dp"
             app:lazyloader_firstDelayDur="200"
             app:lazyloader_secondDelayDur="300" />
+        
     </RelativeLayout>
 
 </RelativeLayout>

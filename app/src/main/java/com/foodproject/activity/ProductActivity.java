@@ -26,6 +26,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -60,6 +61,8 @@ public class ProductActivity extends AppCompatActivity implements NavigationView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_product);
 
         listView = (ListView) findViewById(R.id.list);
@@ -134,10 +137,7 @@ public class ProductActivity extends AppCompatActivity implements NavigationView
 
 
     }
-
-
-   
-
+    
     
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

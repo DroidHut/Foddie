@@ -7,11 +7,13 @@
     android:elevation="4dp"
     app:cardCornerRadius="4dp"
     android:clipToPadding="true"
+    android:layout_marginBottom="6dp"
     android:layout_gravity="center_horizontal"
     android:background="@color/md_white_1000">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="5dp"
         android:orientation="vertical"
         android:layout_gravity="center_horizontal"
         android:gravity="center"
@@ -19,26 +21,24 @@
     <ImageView
         android:id="@+id/subMenuImage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="2"
-        android:src="@mipmap/ic_launcher"/>
+        android:layout_height="150dp"
+        android:layout_weight="2" 
+        android:scaleType="centerCrop"/>
         <TextView
             android:id="@+id/subMenuName"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" 
+            android:layout_height="wrap_content" 
             android:textSize="18sp"
             android:layout_margin="5dp"
             android:layout_weight="1.5"
-            android:text="@string/accept"
             android:textColor="@color/darkgrey"/>
         <TextView
             android:id="@+id/subMenuPrice"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:textSize="16sp"
             android:layout_margin="5dp"
             android:layout_weight="1.5"
-            android:text="@string/accept"
             android:textColor="@color/darkgrey"/>
         
     </LinearLayout>

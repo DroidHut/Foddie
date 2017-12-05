@@ -158,8 +158,8 @@ public class ParseJson {
                         }
                         JSONObject image = jsonArray3.getJSONObject(i).getJSONObject("Image");
 
-                        if (image.has("small")) {
-                            String img = image.getString("small");
+                        if (image.has("medium")) {
+                            String img = image.getString("medium");
                             Log.d("Sub Menu Image", img);
                             productModel.setSubMenuImage(img);
                         }
