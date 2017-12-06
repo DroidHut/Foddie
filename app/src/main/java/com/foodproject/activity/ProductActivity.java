@@ -61,11 +61,10 @@ public class ProductActivity extends AppCompatActivity implements NavigationView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_product);
 
         listView = (ListView) findViewById(R.id.list);
+        try{
         String data[] = ChooseLocality.value.split(":");
         Log.d("Data", data[1]);
         String value[] = data[1].split(",");
@@ -76,6 +75,7 @@ public class ProductActivity extends AppCompatActivity implements NavigationView
         sendLatLang(lat, lang, type);
 
         Log.d("LAT", lat + " LANG:" + lang + type);
+        }catch(NullPointerException e){e.printStackTrace();}
         lazyLoader = (LazyLoader) findViewById(R.id.lazyLoader);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -86,10 +86,24 @@ public class ProductActivity extends AppCompatActivity implements NavigationView
 
         toolTitle.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Bold.otf"));
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+        toggle.setDrawerIndicatorEnabled(false);
+
+        Drawable drawable = ResourcesCompat.getDrawable(getResources(),   R.drawable.menu, ProductActivity.this.getTheme());
+        toggle.setHomeAsUpIndicator(drawable);
+        toggle.setToolbarNavigationClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (drawer.isDrawerVisible(GravityCompat.START)) {
+                    drawer.closeDrawer(GravityCompat.START);
+                } else {
+                   drawer.openDrawer(GravityCompat.START);
+                }
+            }
+        });
         getSupportActionBar().setTitle("");
 
       

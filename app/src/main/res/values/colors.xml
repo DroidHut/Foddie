@@ -8,5 +8,6 @@
     <color name="md_white_1000">#ffffff</color>
     <color name="md_grey_400">#BDBDBD</color>
     <color name="grey">#787878</color> 
+    <color name="light_blue">#e3f2fd</color>
     <color name="darkgrey">#424242</color>
 </resources>

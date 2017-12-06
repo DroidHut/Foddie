@@ -14,7 +14,13 @@ public class ProductModel {
     String subMenuName;
     String subMenuImage;
     String subMenuId;
+    String subMenuPopName;
+    String subMenuPopImage;
+    String subMenuPopSize;
+    String subMenuPopItemType;
+    String subMenuPopItemName;
     float subMenuPrice;
+    int subMenuPopId;
     int star;
 
     public String getName() {
@@ -125,7 +131,29 @@ public class ProductModel {
         return subMenuId;
     }
 
-    public void setSubMenuId(String subMenuId) {
-        this.subMenuId = subMenuId;
-    }
+    public void setSubMenuId(String subMenuId) {this.subMenuId = subMenuId;}
+
+    public int getSubMenuPopId() {return subMenuPopId;}
+
+    public void setSubMenuPopId(int subMenuPopId) {this.subMenuPopId = subMenuPopId;}
+
+    public String getSubMenuPopImage() {return subMenuPopImage;}
+
+    public void setSubMenuPopImage(String subMenuPopImage) {this.subMenuPopImage = subMenuPopImage;}
+
+    public String getSubMenuPopName() {return subMenuPopName;}
+
+    public void setSubMenuPopName(String subMenuPopName) {this.subMenuPopName = subMenuPopName;}
+
+    public String getSubMenuPopSize() {return subMenuPopSize;}
+
+    public void setSubMenuPopSize(String subMenuPopSize) {this.subMenuPopSize = subMenuPopSize;}
+
+    public String getSubMenuPopItemName() {return subMenuPopItemName;}
+
+    public void setSubMenuPopItemName(String subMenuPopItemName) {this.subMenuPopItemName = subMenuPopItemName;}
+
+    public String getSubMenuPopItemType() {return subMenuPopItemType;}
+
+    public void setSubMenuPopItemType(String subMenuPopItemType) {this.subMenuPopItemType = subMenuPopItemType;}
 }

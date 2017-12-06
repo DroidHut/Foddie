@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,8 +19,8 @@ import com.foodproject.pojo.ProductModel;
 import java.util.ArrayList;
 
 public class SubMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-   private  ArrayList<ProductModel> arrayList;
-   private Context context;
+    private ArrayList<ProductModel> arrayList;
+    private Context context;
     private RecyclerView.ViewHolder vh;
 
     public SubMenuAdapter(Context context, ArrayList<ProductModel> arrayList) {
@@ -33,7 +32,7 @@ public class SubMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.sub_menu_item, parent, false);
-        vh= new ItemHolder(view);
+        vh = new ItemHolder(view);
         return vh;
     }
 
@@ -44,7 +43,7 @@ public class SubMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         holder1.name.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/Quicksand-Bold.otf"));
         holder1.price.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/Quicksand-Regular.otf"));
         holder1.name.setText(arrayList.get(position).getSubMenuName());
-        holder1.price.setText(arrayList.get(position).getSubMenuPrice() + " $");
+        holder1.price.setText("Price : "+arrayList.get(position).getSubMenuPrice() + " $");
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.diskCacheStrategy(DiskCacheStrategy.AUTOMATIC);
         requestOptions.placeholder(R.drawable.appimg);
@@ -60,7 +59,7 @@ public class SubMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemCount() {
-        return  arrayList== null ? 0 : arrayList.size();
+        return arrayList == null ? 0 : arrayList.size();
     }
 
     private static class ItemHolder extends RecyclerView.ViewHolder {

@@ -175,4 +175,64 @@ public class ParseJson {
         }
         return subMenuList;
     }
+    public static ArrayList<ProductModel> getSubMenuPopUpList(String s) {
+        ArrayList<ProductModel>subMenuPopList=new ArrayList<>();
+       
+        ProductModel productModel=new ProductModel();
+        try {
+            JSONObject jsonObject4 = new JSONObject(s);
+            if (jsonObject4.has("success")) {
+                if (jsonObject4.getBoolean("success")) {
+                  /*  JSONArray jsonArray4 = jsonObject4.getJSONArray("sub_menu_cart");
+                    JSONObject dataObject4= null;
+                    for (int i = 0; i < jsonArray4.length(); i++) {
+                        dataObject4 = jsonArray4.getJSONObject(i);
+                        if (jsonArray4.getJSONObject(i).has("item_type")) {
+                            String item_type = dataObject4.getString("item_type");
+                            Log.d("Sub Menu Pop item_type", item_type);
+                            productModel.setSubMenuPopItemType(item_type);
+                        }
+                        if (jsonArray4.getJSONObject(i).has("item_type_name")) {
+                            String item_type_name = dataObject4.getString("item_type_name");
+                            Log.d("Sub Menu Pop item_type", item_type_name);
+                            productModel.setSubMenuPopItemName(item_type_name);
+                        }
+
+                       
+                    }*/
+                    JSONObject menu = jsonObject4.getJSONObject("menu");
+                    
+                        if (menu.has("id")) {
+                            int id = menu.getInt("id");
+                            Log.d("Sub Menu Pop id", id+"");
+                            productModel.setSubMenuPopId(id);
+                        }
+                        if (menu.has("name")) {
+                            String name = menu.getString("name");
+                            Log.d("Sub Menu Pop name", name);
+                            productModel.setSubMenuPopName(name);
+                        }
+                        if (menu.has("Image")) {
+                            String img = menu.getString("Image");
+                            Log.d("Sub Menu Pop Image", img);
+                            productModel.setSubMenuPopImage(img);
+                        }
+
+                    if (jsonObject4.has("size")){
+                        String size = jsonObject4.getString("size");
+                        Log.d("Sub Menu Pop Size", size);
+                        productModel.setSubMenuPopSize(size);
+                    }
+               
+                        subMenuPopList.add(productModel);
+                    }
+                }
+            
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return subMenuPopList;
+    }
 }
