@@ -1,23 +1,23 @@
 package com.foodproject.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.SectionIndexer;
 import android.widget.Toast;
 
 import com.agrawalsuneet.dotsloader.ui.LazyLoader;
 import com.foodproject.R;
 import com.foodproject.activity.MenuActivity;
+import com.foodproject.activity.SubMenuActivity;
 import com.foodproject.adapter.SubMenuAdapter;
 import com.foodproject.pojo.ProductModel;
 import com.foodproject.util.ParseJson;
@@ -80,7 +80,11 @@ public class FragmentMain extends Fragment {
                 new RecyclerItemClickListener(mContext, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
                         mContext=getContext();
-                        getSubMenuPopUp(resId,productModelslist.get(position).getSubMenuId());
+                        Intent intent=new Intent(getActivity(), SubMenuActivity.class);
+                        intent.putExtra("ResturantId",resId);
+                        intent.putExtra("SubMenuId",productModelslist.get(position).getSubMenuId());
+                        intent.putExtra("SubMenuPrice",productModelslist.get(position).getSubMenuPrice());
+                        getActivity().startActivity(intent);
                     }
                 })
         );
@@ -131,7 +135,37 @@ public class FragmentMain extends Fragment {
 
     public void getListItems(String resId, ArrayList<String> list) {
         sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
-        getSubMenu(resId, list.get(sectionNumber-1));      
+
+        switch(sectionNumber) {
+            case 1:
+                getSubMenu(resId, list.get(0));
+                break;
+            case 2:
+                getSubMenu(resId, list.get(1));
+                break;
+            case 3:
+                getSubMenu(resId, list.get(2));
+                break;
+            case 4:
+                getSubMenu(resId, list.get(3));
+                break;
+            case 5:
+                getSubMenu(resId, list.get(4));
+                break;
+            case 6:
+                getSubMenu(resId, list.get(5));
+                break;
+            case 7:
+                getSubMenu(resId, list.get(6));
+                break;
+            case 8:
+                getSubMenu(resId, list.get(7));
+                break;
+            case 9:
+                getSubMenu(resId, list.get(8));
+                break;
+        }
+        
     }
 
 
@@ -157,9 +191,9 @@ public class FragmentMain extends Fragment {
                             Log.d("SUCCESS", "Request successful");
                             subMenuPopUplist= ParseJson.getSubMenuPopUpList(s);
                             Log.d("LIST", s);
-                            Toast.makeText(getContext(),subMenuPopUplist.get(0).getSubMenuPopId()+"\n"+
+                          /*  Toast.makeText(getContext(),subMenuPopUplist.get(0).getSubMenuPopId()+"\n"+
                                     subMenuPopUplist.get(0).getSubMenuPopName()+"\n"+subMenuPopUplist.get(0).getSubMenuPopImage()+
-                                            "\n"+ subMenuPopUplist.get(0).getSubMenuPopSize(),Toast.LENGTH_LONG).show();
+                                            "\n"+ subMenuPopUplist.get(0).getSubMenuPopSize(),Toast.LENGTH_LONG).show();*/
                           //  recyclerView.setAdapter(new SubMenuAdapter(getContext(), productModelslist));
                         }
 

@@ -28,7 +28,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 
 
-public class ChooseLocality extends AppCompatActivity implements View.OnClickListener{
+public class ChooseLocality extends AppCompatActivity implements View.OnClickListener {
     EditText editSearch;
     Button button;
     String type;
@@ -51,44 +51,49 @@ public class ChooseLocality extends AppCompatActivity implements View.OnClickLis
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_choose_locality);
-        
+
         editSearch = (EditText) findViewById(R.id.editWorkLocation);
-        radioGroup=(RadioGroup)findViewById(R.id.radiogroup);
-        TextView textView=(TextView) findViewById(R.id.companyLogo);
+        radioGroup = (RadioGroup) findViewById(R.id.radiogroup);
+        TextView textView = (TextView) findViewById(R.id.companyLogo);
+        TextView textLocation1 = (TextView) findViewById(R.id.textLocation1);
+        TextView textLocation2 = (TextView) findViewById(R.id.textLocation2);
         button = (Button) findViewById(R.id.buttonGo);
-        RadioButton pickup=(RadioButton)findViewById(R.id.pickup);
-        RadioButton delivery=(RadioButton)findViewById(R.id.Delivery);
-                
+        RadioButton pickup = (RadioButton) findViewById(R.id.pickup);
+        RadioButton delivery = (RadioButton) findViewById(R.id.Delivery);
+
         pickup.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Regular.otf"));
+        textLocation1.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Regular.otf"));
+        textLocation2.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Regular.otf"));
         delivery.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Regular.otf"));
-        textView.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/Quicksand-Bold.otf"));
-        editSearch.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/Quicksand-Regular.otf"));
-        button.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/Quicksand-Regular.otf"));
-                
-        button.setOnClickListener(this); 
-        editSearch.setOnClickListener(this); 
-              
+        textView.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Bold.otf"));
+        editSearch.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Regular.otf"));
+        button.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Regular.otf"));
+
+        button.setOnClickListener(this);
+        editSearch.setOnClickListener(this);
+
     }
+
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.buttonGo:
-                int id=radioGroup.getCheckedRadioButtonId();
-                radioButton=(RadioButton)findViewById(id);
-                type=radioButton.getText().toString();
+                int id = radioGroup.getCheckedRadioButtonId();
+                radioButton = (RadioButton) findViewById(id);
+                type = radioButton.getText().toString();
                 Intent intent = new Intent(ChooseLocality.this, ProductActivity.class);
-                intent.putExtra("type",type);
+                intent.putExtra("type", type);
                 startActivity(intent);
                 break;
             case R.id.editWorkLocation:
-                
+
                 zzzG();
-                
+
                 break;
         }
 
     }
-    
+
     private void zzzG() {
         int var1 = -1;
 
@@ -132,5 +137,5 @@ public class ChooseLocality extends AppCompatActivity implements View.OnClickLis
         //this.zzzF();
     }
 
-   
+
 }

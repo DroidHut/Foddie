@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.foodproject.R;
@@ -92,6 +93,21 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         new MyAsyncTask().execute();
 
     }
+    private void changeTabsFont() {
+
+        ViewGroup vg = (ViewGroup) tabLayout.getChildAt(0);
+        int tabsCount = vg.getChildCount();
+        for (int j = 0; j < tabsCount; j++) {
+            ViewGroup vgTab = (ViewGroup) vg.getChildAt(j);
+            int tabChildsCount = vgTab.getChildCount();
+            for (int i = 0; i < tabChildsCount; i++) {
+                View tabViewChild = vgTab.getChildAt(i);
+                if (tabViewChild instanceof TextView) {
+                    ((TextView) tabViewChild).setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Regular.otf"));
+                }
+            }
+        }
+    }
 
     public String getResturantId() {
         return id;
@@ -118,6 +134,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                 FragmentMain fView = new FragmentMain();
                 adapter.addFrag(fView, arrayList.get(i).getMenuName());
                 Log.d("TAB TITLE", arrayList.get(i).getMenuName());
+                changeTabsFont();
                 viewPager.setAdapter(adapter);
             }
 
