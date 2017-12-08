@@ -43,7 +43,7 @@ public class SubMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         holder1.name.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/Quicksand-Bold.otf"));
         holder1.price.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/Quicksand-Regular.otf"));
         holder1.name.setText(arrayList.get(position).getSubMenuName());
-        holder1.price.setText("Price : "+arrayList.get(position).getSubMenuPrice() + " $");
+        holder1.price.setText(arrayList.get(position).getSubMenuPrice() + " $");
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.diskCacheStrategy(DiskCacheStrategy.AUTOMATIC);
         requestOptions.placeholder(R.drawable.appimg);

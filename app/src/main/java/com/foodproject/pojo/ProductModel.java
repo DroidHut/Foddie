@@ -19,6 +19,10 @@ public class ProductModel {
     String subMenuPopSize;
     String subMenuPopItemType;
     String subMenuPopItemName;
+    String subMenuPopItemDetailName;
+    String subMenuPopItemDetailPrice; 
+    String subMenuPopSizeName;
+    String subMenuPopSizePrice;
     float subMenuPrice;
     int subMenuPopId;
     int star;
@@ -156,4 +160,20 @@ public class ProductModel {
     public String getSubMenuPopItemType() {return subMenuPopItemType;}
 
     public void setSubMenuPopItemType(String subMenuPopItemType) {this.subMenuPopItemType = subMenuPopItemType;}
+
+    public String getSubMenuPopItemDetailName() {return subMenuPopItemDetailName;}
+
+    public void setSubMenuPopItemDetailName(String subMenuPopItemDetailName) {this.subMenuPopItemDetailName = subMenuPopItemDetailName;}
+
+    public String getSubMenuPopItemDetailPrice() {return subMenuPopItemDetailPrice;}
+
+    public void setSubMenuPopItemDetailPrice(String subMenuPopItemDetailPrice) {this.subMenuPopItemDetailPrice = subMenuPopItemDetailPrice;}
+
+    public String getSubMenuPopSizeName() {return subMenuPopSizeName;}
+
+    public void setSubMenuPopSizeName(String subMenuPopSizeName) {this.subMenuPopSizeName = subMenuPopSizeName;}
+
+    public String getSubMenuPopSizePrice() {return subMenuPopSizePrice;}
+
+    public void setSubMenuPopSizePrice(String subMenuPopSizePrice) {this.subMenuPopSizePrice = subMenuPopSizePrice;}
 }

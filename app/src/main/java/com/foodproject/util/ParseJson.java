@@ -11,11 +11,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
-
 public class ParseJson {
 
     public static ArrayList<ProductModel> getProductList(String s) {
-        ArrayList<ProductModel>productlist=new ArrayList<>();
+        ArrayList<ProductModel> productlist = new ArrayList<>();
         JSONObject dataObject = null;
         try {
             JSONObject jsonObject = new JSONObject(s);
@@ -23,7 +22,7 @@ public class ParseJson {
                 if (jsonObject.getBoolean("success")) {
                     JSONArray jsonArray = jsonObject.getJSONArray("data");
                     for (int i = 0; i < jsonArray.length(); i++) {
-                        ProductModel productModel=new ProductModel();
+                        ProductModel productModel = new ProductModel();
                         dataObject = jsonArray.getJSONObject(i);
                         if (jsonArray.getJSONObject(i).has("restra_id")) {
                             String id = dataObject.getString("restra_id");
@@ -40,12 +39,12 @@ public class ParseJson {
                             Log.d("imageUrl", imgurl);
                             productModel.setImageurl(imgurl);
                         }
-                        if(jsonArray.getJSONObject(i).has("restra_address")){
+                        if (jsonArray.getJSONObject(i).has("restra_address")) {
                             String address = dataObject.getString("restra_address");
                             Log.d("resAddress", address);
                             productModel.setAddress(address);
                         }
-                        if(jsonArray.getJSONObject(i).has("restra_speciality")){
+                        if (jsonArray.getJSONObject(i).has("restra_speciality")) {
                             String speciality = dataObject.getString("restra_speciality");
                             Log.d("resSpeciality", speciality);
                             productModel.setSpeciality(speciality);
@@ -63,30 +62,27 @@ public class ParseJson {
                             Log.d("rate", rate + "");
                             productModel.setRate(rate);
                         }
-                        
+
                         try {
 
                             if (jsonArray.getJSONObject(i).has("restra_order_delivery")) {
-                                JSONObject name=null;
+                                JSONObject name = null;
                                 String restra_order_delivery = dataObject.getString("restra_order_delivery");
                                 JSONObject jsonObject1 = new JSONObject(restra_order_delivery);
-                                if(jsonObject1.has("delivery"))
-                                    name=jsonObject1.getJSONObject("delivery");
-                                if(name.has("min_order"))
-                                {
-                                    String Minorder=name.getString("min_order");
+                                if (jsonObject1.has("delivery"))
+                                    name = jsonObject1.getJSONObject("delivery");
+                                if (name.has("min_order")) {
+                                    String Minorder = name.getString("min_order");
                                     Log.d("imageUrl", Minorder);
                                     productModel.setMinOrder(Minorder);
                                 }
 
 
                             }
-                        }
-                        catch (Exception e)
-                        {
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
-                productlist.add(productModel);
+                        productlist.add(productModel);
                     }
                 }
             }
@@ -97,8 +93,9 @@ public class ParseJson {
         }
         return productlist;
     }
+
     public static ArrayList<ProductModel> getMenuList(String s) {
-        ArrayList<ProductModel>menuList=new ArrayList<>();
+        ArrayList<ProductModel> menuList = new ArrayList<>();
         JSONObject dataObject2 = null;
         try {
             JSONObject jsonObject2 = new JSONObject(s);
@@ -106,7 +103,7 @@ public class ParseJson {
                 if (jsonObject2.getBoolean("success")) {
                     JSONArray jsonArray2 = jsonObject2.getJSONArray("menu");
                     for (int i = 0; i < jsonArray2.length(); i++) {
-                        ProductModel productModel=new ProductModel();
+                        ProductModel productModel = new ProductModel();
                         dataObject2 = jsonArray2.getJSONObject(i);
                         if (jsonArray2.getJSONObject(i).has("id")) {
                             String id = dataObject2.getString("id");
@@ -130,8 +127,9 @@ public class ParseJson {
         }
         return menuList;
     }
+
     public static ArrayList<ProductModel> getSubMenuList(String s) {
-        ArrayList<ProductModel>subMenuList=new ArrayList<>();
+        ArrayList<ProductModel> subMenuList = new ArrayList<>();
         JSONObject dataObject3 = null;
         try {
             JSONObject jsonObject3 = new JSONObject(s);
@@ -139,7 +137,7 @@ public class ParseJson {
                 if (jsonObject3.getBoolean("success")) {
                     JSONArray jsonArray3 = jsonObject3.getJSONArray("sub_menu");
                     for (int i = 0; i < jsonArray3.length(); i++) {
-                        ProductModel productModel=new ProductModel();
+                        ProductModel productModel = new ProductModel();
                         dataObject3 = jsonArray3.getJSONObject(i);
                         if (jsonArray3.getJSONObject(i).has("id")) {
                             String id = dataObject3.getString("id");
@@ -153,7 +151,7 @@ public class ParseJson {
                         }
                         if (jsonArray3.getJSONObject(i).has("Price")) {
                             int price = dataObject3.getInt("Price");
-                            Log.d("Sub Menu price", price+"");
+                            Log.d("Sub Menu price", price + "");
                             productModel.setSubMenuPrice(price);
                         }
                         JSONObject image = jsonArray3.getJSONObject(i).getJSONObject("Image");
@@ -175,59 +173,84 @@ public class ParseJson {
         }
         return subMenuList;
     }
+
     public static ArrayList<ProductModel> getSubMenuPopUpList(String s) {
-        ArrayList<ProductModel>subMenuPopList=new ArrayList<>();
-       
-        ProductModel productModel=new ProductModel();
+        ArrayList<ProductModel> subMenuPopList = new ArrayList<>();
+
+        ProductModel productModel = new ProductModel();
         try {
             JSONObject jsonObject4 = new JSONObject(s);
             if (jsonObject4.has("success")) {
                 if (jsonObject4.getBoolean("success")) {
-                  /*  JSONArray jsonArray4 = jsonObject4.getJSONArray("sub_menu_cart");
-                    JSONObject dataObject4= null;
-                    for (int i = 0; i < jsonArray4.length(); i++) {
-                        dataObject4 = jsonArray4.getJSONObject(i);
-                        if (jsonArray4.getJSONObject(i).has("item_type")) {
-                            String item_type = dataObject4.getString("item_type");
-                            Log.d("Sub Menu Pop item_type", item_type);
-                            productModel.setSubMenuPopItemType(item_type);
-                        }
-                        if (jsonArray4.getJSONObject(i).has("item_type_name")) {
-                            String item_type_name = dataObject4.getString("item_type_name");
-                            Log.d("Sub Menu Pop item_type", item_type_name);
-                            productModel.setSubMenuPopItemName(item_type_name);
-                        }
+                   
+                    JSONArray jsonArray4 = jsonObject4.getJSONArray("sub_menu_cart");
+                    JSONObject dataObject4 = null;
+                    if( !jsonObject4.getJSONArray("sub_menu_cart").toString().isEmpty()) {
+                        for (int i = 0; i < jsonArray4.length(); i++) {
+                            dataObject4 = jsonArray4.getJSONObject(i);
+                            if (jsonArray4.getJSONObject(i).has("item_type")) {
+                                String item_type = dataObject4.getString("item_type");
+                                Log.d("Sub Menu Pop item_type", item_type);
+                                productModel.setSubMenuPopItemType(item_type);
+                            }
+                            if (jsonArray4.getJSONObject(i).has("item_type_name")) {
+                                String item_type_name = dataObject4.getString("item_type_name");
+                                Log.d("Sub Menu Pop item_type", item_type_name);
+                                productModel.setSubMenuPopItemName(item_type_name);
+                            }
 
-                       
+
+                          /*  JSONArray childJsonArray = jsonArray4.getJSONArray(i);
+                            JSONObject contentJsonObject = childJsonArray.getJSONObject(2);
+                            String item_type_detail_name = contentJsonObject.getString("item_type_name");
+                            productModel.setSubMenuPopItemDetailName(item_type_detail_name);
+                            Log.d("Sub Menu Pop" + "itemname", item_type_detail_name);
+                            String item_type_detail_price = contentJsonObject.getString("item_type_price");
+                            productModel.setSubMenuPopItemDetailPrice(item_type_detail_price);
+                            Log.d("Sub Menu Pop" + "itemprice", item_type_detail_price);*/
+                        }
+                    }
+                   /* JSONArray sizeArray=jsonObject4.getJSONArray("size");
+                    {
+                        JSONObject dataObject5 = null;
+                        if (!jsonObject4.getJSONArray("size").toString().isEmpty()) {
+                            for (int k = 0; k < sizeArray.length(); k++) {
+                                dataObject5 = sizeArray.getJSONObject(k);
+                                if (sizeArray.getJSONObject(k).has("item_size_name")) {
+                                    String itemSizeName = dataObject5.getString("item_size_name");
+                                    Log.d("Sub Menu Pop SizeName", itemSizeName + "");
+                                    productModel.setSubMenuPopSizeName(itemSizeName);
+                                }
+                                if (sizeArray.getJSONObject(k).has("item_size_prise")) {
+                                    String itemSizePrice = dataObject5.getString("item_size_prise");
+                                    Log.d("Sub Menu Pop SizePrice", itemSizePrice + "");
+                                    productModel.setSubMenuPopSizePrice(itemSizePrice);
+                                }
+                            }
+                        }
                     }*/
+                   
                     JSONObject menu = jsonObject4.getJSONObject("menu");
-                    
-                        if (menu.has("id")) {
-                            int id = menu.getInt("id");
-                            Log.d("Sub Menu Pop id", id+"");
-                            productModel.setSubMenuPopId(id);
-                        }
-                        if (menu.has("name")) {
-                            String name = menu.getString("name");
-                            Log.d("Sub Menu Pop name", name);
-                            productModel.setSubMenuPopName(name);
-                        }
-                        if (menu.has("Image")) {
-                            String img = menu.getString("Image");
-                            Log.d("Sub Menu Pop Image", img);
-                            productModel.setSubMenuPopImage(img);
-                        }
 
-                    if (jsonObject4.has("size")){
-                        String size = jsonObject4.getString("size");
-                        Log.d("Sub Menu Pop Size", size);
-                        productModel.setSubMenuPopSize(size);
+                    if (menu.has("id")) {
+                        int id = menu.getInt("id");
+                        Log.d("Sub Menu Pop id", id + "");
+                        productModel.setSubMenuPopId(id);
                     }
-               
-                        subMenuPopList.add(productModel);
+                    if (menu.has("name")) {
+                        String name = menu.getString("name");
+                        Log.d("Sub Menu Pop name", name);
+                        productModel.setSubMenuPopName(name);
                     }
+                    if (menu.has("Image")) {
+                        String img = menu.getString("Image");
+                        Log.d("Sub Menu Pop Image", img);
+                        productModel.setSubMenuPopImage(img);
+                    }
+
+                    subMenuPopList.add(productModel);
                 }
-            
+            }
 
 
         } catch (Exception e) {

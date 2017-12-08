@@ -45,25 +45,83 @@
             android:textSize="16sp"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:layout_alignParentTop="true"
             android:textColor="@color/grey" />
         <TextView
             android:id="@+id/subMenuPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
+            android:layout_width="75dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="5dp"
             android:textSize="15sp"
             android:gravity="bottom"
-            android:layout_weight="2"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/round_button"
             android:textColor="@color/darkgrey"/>
+            <RelativeLayout
+                android:layout_toRightOf="@id/subMenuPrice"
+                android:layout_alignParentBottom="true"
+                android:layout_weight="1"
+                android:id="@+id/item_number"
+                android:layout_width="120dp"
+                android:layout_gravity="right"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/addButton"
+                    android:layout_width="120dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="right"
+                    android:background="@drawable/button"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="ADD"
+                    android:backgroundTint="#8bcc21"
+                    android:textColor="@color/md_white_1000" />
+
+                <LinearLayout
+                    android:id="@+id/layout_item_number_counter"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/round_button"
+                    android:gravity="right"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/btn_minus"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/minus" />
+
+                    <TextView
+                        android:id="@+id/text_counter"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/md_white_1000"
+                        android:background="#8bcc21"
+                        android:textSize="20sp" />
+
+                    <ImageButton
+                        android:id="@+id/btn_add"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/add" />
+                </LinearLayout>
+            </RelativeLayout>
+
         </RelativeLayout>
         
     </LinearLayout>

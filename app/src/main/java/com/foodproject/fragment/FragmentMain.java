@@ -168,46 +168,6 @@ public class FragmentMain extends Fragment {
         
     }
 
-
-    private void getSubMenuPopUp(String resId, String subMenuId) {
-        try {
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("tag", "getSubMenuPopUp");
-            jsonObject.put("Restra_id", resId);
-            jsonObject.put("Sub_Menu_id", subMenuId);
-
-
-            Perfecto.with(getActivity())
-                    .fromUrl("https://www.foodondeal.in/api")
-                    .ofTypePost(jsonObject)
-                    .connect(new OnNetworkRequest() {
-                        @Override
-                        public void onStart() {
-                            Log.d("START", "Request started");
-                        }
-                        @Override
-                        public void onSuccess(String s) {
-                            lazyLoader.setVisibility(View.GONE);
-                            Log.d("SUCCESS", "Request successful");
-                            subMenuPopUplist= ParseJson.getSubMenuPopUpList(s);
-                            Log.d("LIST", s);
-                          /*  Toast.makeText(getContext(),subMenuPopUplist.get(0).getSubMenuPopId()+"\n"+
-                                    subMenuPopUplist.get(0).getSubMenuPopName()+"\n"+subMenuPopUplist.get(0).getSubMenuPopImage()+
-                                            "\n"+ subMenuPopUplist.get(0).getSubMenuPopSize(),Toast.LENGTH_LONG).show();*/
-                          //  recyclerView.setAdapter(new SubMenuAdapter(getContext(), productModelslist));
-                        }
-
-                        @Override
-                        public void onFailure(int i, String s, String s1) {
-                            Log.d("FAILED", "Request failed");
-                        }
-                    });
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
     
 }
    
