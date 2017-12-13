@@ -2,6 +2,7 @@ package com.foodproject.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -41,7 +42,7 @@ public class FragmentMain extends Fragment {
     private ArrayList<String> subMenuList = new ArrayList<>();
     private ArrayList<ProductModel> productModelslist = new ArrayList<>();
     private ArrayList<ProductModel> subMenuPopUplist = new ArrayList<>();
-    private String resId;
+    private String resId,menuId;
     private Context mContext;
 
 
@@ -71,10 +72,8 @@ public class FragmentMain extends Fragment {
         MenuActivity activity = (MenuActivity) getActivity();
         resId = activity.getResturantId();
         subMenuList = activity.getMenuIdList();
-        getListItems(resId, subMenuList);
-     
+        new MyAsyncTask().execute();
        
-
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(mContext, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
@@ -84,7 +83,7 @@ public class FragmentMain extends Fragment {
                             intent.putExtra("ResturantId", resId);
                             intent.putExtra("SubMenuId", productModelslist.get(position).getSubMenuId());
                             intent.putExtra("SubMenuPrice", productModelslist.get(position).getSubMenuPrice());
-                        getActivity().startActivity(intent);
+                            getActivity().startActivity(intent);
                     }
                 })
         );
@@ -94,6 +93,7 @@ public class FragmentMain extends Fragment {
 
     private void getSubMenu(String resId, String menuId) {
         try {
+           
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("tag", "getSubMenu");
             jsonObject.put("Restra_id", resId);
@@ -130,38 +130,45 @@ public class FragmentMain extends Fragment {
         }
 
     }
+    private class MyAsyncTask extends AsyncTask<Void,Void,Void> {
 
+        @Override
+        protected Void doInBackground(Void... params) {
+            getListItems(resId,subMenuList);
+            return null;
+        }
 
-    public void getListItems(String resId, ArrayList<String> list) {
+    }
+
+   public void getListItems(String resId,ArrayList<String> list){
         sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
-
         switch (sectionNumber) {
             case 1:
-                getSubMenu(resId, subMenuList.get(0));
+                getSubMenu(resId, list.get(0));
                 break;
             case 2:
-                getSubMenu(resId, subMenuList.get(1));
+                getSubMenu(resId, list.get(1));
                 break;
             case 3:
-                getSubMenu(resId, subMenuList.get(2));
+                getSubMenu(resId, list.get(2));
                 break;
             case 4:
-                getSubMenu(resId, subMenuList.get(3));
+                getSubMenu(resId, list.get(3));
                 break;
             case 5:
-                getSubMenu(resId, subMenuList.get(4));
+                getSubMenu(resId, list.get(4));
                 break;
             case 6:
-                getSubMenu(resId, subMenuList.get(5));
+                getSubMenu(resId, list.get(5));
                 break;
             case 7:
-                getSubMenu(resId, subMenuList.get(6));
+                getSubMenu(resId, list.get(6));
                 break;
             case 8:
-                getSubMenu(resId, subMenuList.get(7));
+                getSubMenu(resId, list.get(7));
                 break;
             case 9:
-                getSubMenu(resId, subMenuList.get(8));
+                getSubMenu(resId, list.get(8));
                 break;
         }
           

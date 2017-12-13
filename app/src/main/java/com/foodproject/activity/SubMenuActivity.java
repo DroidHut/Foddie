@@ -1,11 +1,9 @@
 package com.foodproject.activity;
 
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -23,9 +21,7 @@ import com.foodproject.pojo.ProductModel;
 import com.foodproject.util.ParseJson;
 
 import org.json.JSONObject;
-
 import java.util.ArrayList;
-
 import developer.shivam.perfecto.OnNetworkRequest;
 import developer.shivam.perfecto.Perfecto;
 
@@ -74,19 +70,7 @@ public class SubMenuActivity extends AppCompatActivity implements View.OnClickLi
         subMenuItemName.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Bold.otf"));
         subMenuTitle.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Bold.otf"));
         subMenuItemPrice.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Bold.otf"));
-
-        if (resId.isEmpty() && subMenuId.isEmpty()) {
-            relativeLayout.setVisibility(View.VISIBLE);
-            TextView textView = new TextView(this);
-            textView.setText("Sorry List is Empty !! " + "\n Try Again");
-            textView.setTextSize(25);
-            textView.setTextColor(Color.DKGRAY);
-            textView.setGravity(Gravity.CENTER);
-            relativeLayout.addView(textView);
-            lazyLoader.setVisibility(View.VISIBLE);
-        } else {
-            getSubMenuPopUp(resId, subMenuId);
-        }
+        getSubMenuPopUp(resId, subMenuId);
 
     }
 
@@ -136,8 +120,7 @@ public class SubMenuActivity extends AppCompatActivity implements View.OnClickLi
             jsonObject.put("tag", "getSubMenuPopUp");
             jsonObject.put("Restra_id", resId);
             jsonObject.put("Sub_Menu_id", subMenuId);
-
-
+            
             Perfecto.with(SubMenuActivity.this)
                     .fromUrl("https://www.foodondeal.in/api")
                     .ofTypePost(jsonObject)
@@ -158,35 +141,12 @@ public class SubMenuActivity extends AppCompatActivity implements View.OnClickLi
                             requestOptions.diskCacheStrategy(DiskCacheStrategy.AUTOMATIC);
                             requestOptions.placeholder(R.drawable.appimg);
                             requestOptions.error(R.drawable.appimg);
-                            if (subMenuPopUplist.size() != 0) {
-                                subMenuItemName.setText(subMenuPopUplist.get(0).getSubMenuPopName());
-                                Glide.with(SubMenuActivity.this).load(subMenuPopUplist.get(0).getSubMenuPopImage()).apply(requestOptions).into(subMenuItemImage);
-                            } else {
-                                subMenuItemName.setText("Items Unavailable !");
-                                Glide.with(SubMenuActivity.this).load(R.drawable.appimg).apply(requestOptions).into(subMenuItemImage);
-                                Toast.makeText(SubMenuActivity.this, "NULL !", Toast.LENGTH_SHORT).show();
-                            }
+
                             subMenuItemName.setText(subMenuPopUplist.get(0).getSubMenuPopName());
+                            Glide.with(SubMenuActivity.this).load(subMenuPopUplist.get(0).getSubMenuPopImage()).apply(requestOptions).into(subMenuItemImage);
                             Log.d("KETO", subMenuPopUplist + "");
-                          /*  Log.d("POP ITEMS", subMenuPopUplist.get(0).getSubMenuPopImage() +
-                                            subMenuPopUplist.get(0).getSubMenuPopName() + "\n" + subMenuPopUplist.get(0).getSubMenuPopSize()
-                                    //+
-                                    //"\n" + subMenuPopUplist.get(0).getSubMenuPopItemName() +
-                                    // "\n" + subMenuPopUplist.get(0).getSubMenuPopItemType()
-                                    //  + "\n" + subMenuPopUplist.get(1).getSubMenuPopItemDetailName()+
-                                    //  "\n" + subMenuPopUplist.get(1).getSubMenuPopItemDetailPrice()
-                            );*/
-                                
-                           
-                            Toast.makeText(SubMenuActivity.this, subMenuPopUplist.get(0).getSubMenuPopId() + "\n" +
-                                    subMenuPopUplist.get(0).getSubMenuPopName() + "\n" + subMenuPopUplist.get(0).getSubMenuPopImage() +
-                                    "\n" + subMenuPopUplist.get(0).getSubMenuPopSize()+"\n" + subMenuPopUplist.get(0).getSubMenuPopItemName()+
-                                    "\n" + subMenuPopUplist.get(0).getSubMenuPopItemType()
-                                       //     +
-                                   //"\n" + subMenuPopUplist.get(0).getSubMenuPopItemDetailName()+
-                                   // "\n" + subMenuPopUplist.get(0).getSubMenuPopItemDetailPrice()
-                                    , Toast.LENGTH_LONG).show();
-                            //  recyclerView.setAdapter(new SubMenuAdapter(getContext(), productModelslist));
+                            Toast.makeText(SubMenuActivity.this, "LIST SIZE " + subMenuPopUplist.size() + "", Toast.LENGTH_SHORT).show();
+
                         }
 
                         @Override

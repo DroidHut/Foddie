@@ -199,7 +199,7 @@ public class ParseJson {
                                 productModel.setSubMenuPopItemName(item_type_name);
                             }
 
-                            if (jsonArray4.getJSONArray(i).toString() == "item_type_details") {
+                          /*  if (jsonArray4.getJSONObject(i).has("item_type_details")) {
                                 JSONArray childJsonArray = jsonArray4.getJSONArray(i);
                                 JSONObject contentJsonObject = childJsonArray.getJSONObject(0);
                                 if (contentJsonObject.has("item_type_name")) {
@@ -212,7 +212,7 @@ public class ParseJson {
                                     productModel.setSubMenuPopItemDetailPrice(item_type_detail_price);
                                     Log.d("Sub Menu Pop" + "itemprice", item_type_detail_price);
                                 }
-                            }
+                            }*/
                         }
                     }
                    /* JSONArray sizeArray=jsonObject4.getJSONArray("size");

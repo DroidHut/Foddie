@@ -3,6 +3,7 @@ package com.foodproject.activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -56,14 +57,14 @@ public class ChooseLocality extends AppCompatActivity implements View.OnClickLis
         radioGroup = (RadioGroup) findViewById(R.id.radiogroup);
         TextView textView = (TextView) findViewById(R.id.companyLogo);
         TextView textLocation1 = (TextView) findViewById(R.id.textLocation1);
-       // TextView textLocation2 = (TextView) findViewById(R.id.textLocation2);
+        TextInputLayout textLocation2 = (TextInputLayout) findViewById(R.id.input_location);
         button = (Button) findViewById(R.id.buttonGo);
         RadioButton pickup = (RadioButton) findViewById(R.id.pickup);
         RadioButton delivery = (RadioButton) findViewById(R.id.Delivery);
 
         pickup.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Regular.otf"));
         textLocation1.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Regular.otf"));
-       // textLocation2.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Regular.otf"));
+        textLocation2.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Regular.otf"));
         delivery.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Regular.otf"));
         textView.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Bold.otf"));
         editSearch.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Regular.otf"));
