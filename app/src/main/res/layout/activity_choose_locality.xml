@@ -63,8 +63,8 @@
                         android:paddingLeft="10dp"
                         android:paddingRight="20dp"
                         android:singleLine="true"
-                        android:textColor="@color/darkgrey"
-                        android:textColorHint="@color/darkgrey"
+                        android:textColor="@color/md_white_1000"
+                        android:textColorHint="@color/md_white_1000"
                         android:textSize="18sp" />
 
                     <requestFocus />
