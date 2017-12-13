@@ -71,36 +71,9 @@ public class FragmentMain extends Fragment {
         MenuActivity activity = (MenuActivity) getActivity();
         resId = activity.getResturantId();
         subMenuList = activity.getMenuIdList();
-       // getListItems(resId, subMenuList);
-        switch (sectionNumber) {
-            case 1:
-                getSubMenu(resId, subMenuList.get(0));
-                break;
-            case 2:
-                getSubMenu(resId, subMenuList.get(1));
-                break;
-            case 3:
-                getSubMenu(resId, subMenuList.get(2));
-                break;
-            case 4:
-                getSubMenu(resId, subMenuList.get(3));
-                break;
-            case 5:
-                getSubMenu(resId, subMenuList.get(4));
-                break;
-            case 6:
-                getSubMenu(resId, subMenuList.get(5));
-                break;
-            case 7:
-                getSubMenu(resId, subMenuList.get(6));
-                break;
-            case 8:
-                getSubMenu(resId, subMenuList.get(7));
-                break;
-            case 9:
-                getSubMenu(resId, subMenuList.get(8));
-                break;
-        }
+        getListItems(resId, subMenuList);
+     
+       
 
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(mContext, new RecyclerItemClickListener.OnItemClickListener() {
@@ -161,9 +134,36 @@ public class FragmentMain extends Fragment {
 
     public void getListItems(String resId, ArrayList<String> list) {
         sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
-        
-            //int arrayPos=sectionNumber-1;
-           // getSubMenu(resId, list.get(arrayPos))
+
+        switch (sectionNumber) {
+            case 1:
+                getSubMenu(resId, subMenuList.get(0));
+                break;
+            case 2:
+                getSubMenu(resId, subMenuList.get(1));
+                break;
+            case 3:
+                getSubMenu(resId, subMenuList.get(2));
+                break;
+            case 4:
+                getSubMenu(resId, subMenuList.get(3));
+                break;
+            case 5:
+                getSubMenu(resId, subMenuList.get(4));
+                break;
+            case 6:
+                getSubMenu(resId, subMenuList.get(5));
+                break;
+            case 7:
+                getSubMenu(resId, subMenuList.get(6));
+                break;
+            case 8:
+                getSubMenu(resId, subMenuList.get(7));
+                break;
+            case 9:
+                getSubMenu(resId, subMenuList.get(8));
+                break;
+        }
           
 
     }

@@ -159,10 +159,12 @@ public class SubMenuActivity extends AppCompatActivity implements View.OnClickLi
                             requestOptions.placeholder(R.drawable.appimg);
                             requestOptions.error(R.drawable.appimg);
                             if (subMenuPopUplist.size() != 0) {
+                                subMenuItemName.setText(subMenuPopUplist.get(0).getSubMenuPopName());
                                 Glide.with(SubMenuActivity.this).load(subMenuPopUplist.get(0).getSubMenuPopImage()).apply(requestOptions).into(subMenuItemImage);
                             } else {
+                                subMenuItemName.setText("Items Unavailable !");
                                 Glide.with(SubMenuActivity.this).load(R.drawable.appimg).apply(requestOptions).into(subMenuItemImage);
-                                Toast.makeText(SubMenuActivity.this, "Image NULL!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SubMenuActivity.this, "NULL !", Toast.LENGTH_SHORT).show();
                             }
                             subMenuItemName.setText(subMenuPopUplist.get(0).getSubMenuPopName());
                             Log.d("KETO", subMenuPopUplist + "");
