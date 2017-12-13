@@ -8,10 +8,12 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SectionIndexer;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.agrawalsuneet.dotsloader.ui.LazyLoader;
@@ -24,7 +26,9 @@ import com.foodproject.util.ParseJson;
 import com.foodproject.util.RecyclerItemClickListener;
 
 import org.json.JSONObject;
+
 import java.util.ArrayList;
+
 import developer.shivam.perfecto.OnNetworkRequest;
 import developer.shivam.perfecto.Perfecto;
 
@@ -51,13 +55,13 @@ public class FragmentMain extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-    
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_fragment_main, container, false);
-        
+
         recyclerView = (RecyclerView) rootView.findViewById(R.id.listMenu);
         recyclerView.setNestedScrollingEnabled(true);
         layoutManager = new LinearLayoutManager(getContext());
@@ -67,32 +71,54 @@ public class FragmentMain extends Fragment {
         MenuActivity activity = (MenuActivity) getActivity();
         resId = activity.getResturantId();
         subMenuList = activity.getMenuIdList();
-        getListItems(resId, subMenuList);
+       // getListItems(resId, subMenuList);
+        switch (sectionNumber) {
+            case 1:
+                getSubMenu(resId, subMenuList.get(0));
+                break;
+            case 2:
+                getSubMenu(resId, subMenuList.get(1));
+                break;
+            case 3:
+                getSubMenu(resId, subMenuList.get(2));
+                break;
+            case 4:
+                getSubMenu(resId, subMenuList.get(3));
+                break;
+            case 5:
+                getSubMenu(resId, subMenuList.get(4));
+                break;
+            case 6:
+                getSubMenu(resId, subMenuList.get(5));
+                break;
+            case 7:
+                getSubMenu(resId, subMenuList.get(6));
+                break;
+            case 8:
+                getSubMenu(resId, subMenuList.get(7));
+                break;
+            case 9:
+                getSubMenu(resId, subMenuList.get(8));
+                break;
+        }
 
-
-        return rootView;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(mContext, new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override public void onItemClick(View view, int position) {
-                        mContext=getContext();
-                        Intent intent=new Intent(getActivity(), SubMenuActivity.class);
-                        intent.putExtra("ResturantId",resId);
-                        intent.putExtra("SubMenuId",productModelslist.get(position).getSubMenuId());
-                        intent.putExtra("SubMenuPrice",productModelslist.get(position).getSubMenuPrice());
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        mContext = getContext();
+                        Intent intent = new Intent(getActivity(), SubMenuActivity.class);
+                            intent.putExtra("ResturantId", resId);
+                            intent.putExtra("SubMenuId", productModelslist.get(position).getSubMenuId());
+                            intent.putExtra("SubMenuPrice", productModelslist.get(position).getSubMenuPrice());
                         getActivity().startActivity(intent);
                     }
                 })
         );
-
-
+        return rootView;
     }
-    
-    
+
+
     private void getSubMenu(String resId, String menuId) {
         try {
             JSONObject jsonObject = new JSONObject();
@@ -117,7 +143,7 @@ public class FragmentMain extends Fragment {
                             Log.d("SUBMENU" + "LIST", s);
                             recyclerView.removeAllViews();
                             recyclerView.setAdapter(new SubMenuAdapter(getActivity(), productModelslist));
-                                               }
+                        }
 
                         @Override
                         public void onFailure(int i, String s, String s1) {
@@ -129,45 +155,19 @@ public class FragmentMain extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }
-  
+
 
     public void getListItems(String resId, ArrayList<String> list) {
         sectionNumber = getArguments().getInt(ARG_SECTION_NUMBER);
-
-        switch(sectionNumber) {
-            case 1:
-                getSubMenu(resId, list.get(0));
-                break;
-            case 2:
-                getSubMenu(resId, list.get(1));
-                break;
-            case 3:
-                getSubMenu(resId, list.get(2));
-                break;
-            case 4:
-                getSubMenu(resId, list.get(3));
-                break;
-            case 5:
-                getSubMenu(resId, list.get(4));
-                break;
-            case 6:
-                getSubMenu(resId, list.get(5));
-                break;
-            case 7:
-                getSubMenu(resId, list.get(6));
-                break;
-            case 8:
-                getSubMenu(resId, list.get(7));
-                break;
-            case 9:
-                getSubMenu(resId, list.get(8));
-                break;
-        }
         
+            //int arrayPos=sectionNumber-1;
+           // getSubMenu(resId, list.get(arrayPos))
+          
+
     }
 
-    
+
 }
    

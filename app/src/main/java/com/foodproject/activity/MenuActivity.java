@@ -114,6 +114,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     }
     
     private ArrayList<String> array=new ArrayList<>();
+    
     public ArrayList<String> getMenuIdList() {
     if(productModelslist.size()>0) {
         for (int i = 0; i < productModelslist.size(); i++) {

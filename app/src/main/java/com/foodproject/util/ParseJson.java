@@ -182,10 +182,10 @@ public class ParseJson {
             JSONObject jsonObject4 = new JSONObject(s);
             if (jsonObject4.has("success")) {
                 if (jsonObject4.getBoolean("success")) {
-                   
+
                     JSONArray jsonArray4 = jsonObject4.getJSONArray("sub_menu_cart");
                     JSONObject dataObject4 = null;
-                    if( !jsonObject4.getJSONArray("sub_menu_cart").toString().isEmpty()) {
+                    if (jsonObject4.has("sub_menu_cart")) {
                         for (int i = 0; i < jsonArray4.length(); i++) {
                             dataObject4 = jsonArray4.getJSONObject(i);
                             if (jsonArray4.getJSONObject(i).has("item_type")) {
@@ -199,15 +199,20 @@ public class ParseJson {
                                 productModel.setSubMenuPopItemName(item_type_name);
                             }
 
-
-                          /*  JSONArray childJsonArray = jsonArray4.getJSONArray(i);
-                            JSONObject contentJsonObject = childJsonArray.getJSONObject(2);
-                            String item_type_detail_name = contentJsonObject.getString("item_type_name");
-                            productModel.setSubMenuPopItemDetailName(item_type_detail_name);
-                            Log.d("Sub Menu Pop" + "itemname", item_type_detail_name);
-                            String item_type_detail_price = contentJsonObject.getString("item_type_price");
-                            productModel.setSubMenuPopItemDetailPrice(item_type_detail_price);
-                            Log.d("Sub Menu Pop" + "itemprice", item_type_detail_price);*/
+                            if (jsonArray4.getJSONArray(i).toString() == "item_type_details") {
+                                JSONArray childJsonArray = jsonArray4.getJSONArray(i);
+                                JSONObject contentJsonObject = childJsonArray.getJSONObject(0);
+                                if (contentJsonObject.has("item_type_name")) {
+                                    String item_type_detail_name = contentJsonObject.getString("item_type_name");
+                                    productModel.setSubMenuPopItemDetailName(item_type_detail_name);
+                                    Log.d("Sub Menu Pop" + "itemname", item_type_detail_name);
+                                }
+                                if (contentJsonObject.has("item_type_price")) {
+                                    String item_type_detail_price = contentJsonObject.getString("item_type_price");
+                                    productModel.setSubMenuPopItemDetailPrice(item_type_detail_price);
+                                    Log.d("Sub Menu Pop" + "itemprice", item_type_detail_price);
+                                }
+                            }
                         }
                     }
                    /* JSONArray sizeArray=jsonObject4.getJSONArray("size");
@@ -229,7 +234,7 @@ public class ParseJson {
                             }
                         }
                     }*/
-                   
+
                     JSONObject menu = jsonObject4.getJSONObject("menu");
 
                     if (menu.has("id")) {

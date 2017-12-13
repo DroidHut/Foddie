@@ -98,7 +98,8 @@ public class ChooseLocality extends AppCompatActivity implements View.OnClickLis
         int var1 = -1;
 
         try {
-            Intent var2 = (new PlaceAutocomplete.IntentBuilder(2)).setBoundsBias(this.zzaRk).setFilter(this.zzaRl).zzeq(this.editSearch.getText().toString()).zzig(1).build(ChooseLocality.this);
+            Intent var2 = (new PlaceAutocomplete.IntentBuilder(2)).setBoundsBias(this.zzaRk).setFilter(this.zzaRl).
+                    zzeq(this.editSearch.getText().toString()).zzig(1).build(ChooseLocality.this);
             this.startActivityForResult(var2, 1);
         } catch (GooglePlayServicesRepairableException var3) {
             var1 = var3.getConnectionStatusCode();

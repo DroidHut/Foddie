@@ -82,6 +82,7 @@ public class ProductActivity extends AppCompatActivity implements NavigationView
         TextView toolTitle = (TextView) findViewById(R.id.tool_text);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         setSupportActionBar(toolbar);
+        navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(this);
 
         toolTitle.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Quicksand-Bold.otf"));
