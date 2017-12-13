@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:id="@+id/sub_menu_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@color/blue"
+        android:gravity="center"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        android:text="ITEM DETAILS"
+        android:textColor="@color/md_white_1000"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+    <RelativeLayout
+        android:id="@+id/layout_subMenu"
+        android:layout_below="@id/sub_menu_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:id="@+id/layout_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="5dp"
+        android:weightSum="2">
+        <ImageView
+            android:id="@+id/sub_menu_image"
+            android:layout_width="match_parent"
+            android:layout_height="175dp"
+            android:layout_centerInParent="true"
+            android:padding="1dp"
+            android:layout_weight="1"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/sub_menu_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/darkgrey"
+            android:textSize="20sp" />  
+    </LinearLayout>
+    <TextView
+        android:layout_below="@+id/layout_1"
+        android:id="@+id/total_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/blue"
+        android:textSize="20sp"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp" 
+        android:layout_centerHorizontal="true"/>
+    <RelativeLayout
+        android:layout_below="@id/total_price"
+        android:id="@+id/item_number"
+        android:layout_width="110dp"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/addButton"
+            android:layout_width="110dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="ADD"
+            android:backgroundTint="#8bcc21"
+            android:textColor="@color/md_white_1000" />
+
+        <LinearLayout
+            android:id="@+id/layout_item_number_counter"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/round_button"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btn_minus"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/minus" />
+
+            <TextView
+                android:id="@+id/text_counter"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/md_white_1000"
+                android:background="#8bcc21"
+                android:textSize="20sp" />
+
+            <ImageButton
+                android:id="@+id/btn_add"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/add" />
+        </LinearLayout>
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#aeaeae" />
+    <Button
+        android:id="@+id/goToPay"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="CONTINUE"
+        android:background="@color/md_white_1000"
+        android:textColor="@color/blue"
+        android:textSize="18sp" />
+    </LinearLayout>
+    </RelativeLayout>
+    <com.agrawalsuneet.dotsloader.ui.LazyLoader
+        android:id="@+id/lazyLoader_submenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:screenOrientation="portrait"
+        app:all_dotsColor="@color/blue"
+        app:all_dotsDist="6dp"
+        app:all_dotsRadius="5dp"
+        app:lazyloader_firstDelayDur="200"
+        app:lazyloader_secondDelayDur="300" />
+   </RelativeLayout>
