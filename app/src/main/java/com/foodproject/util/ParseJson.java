@@ -198,8 +198,7 @@ public class ParseJson {
                                 Log.d("Sub Menu Pop item_type", item_type_name);
                                 productModel.setSubMenuPopItemName(item_type_name);
                             }
-
-                          /*  if (jsonArray4.getJSONObject(i).has("item_type_details")) {
+                           /* if (jsonArray4.getJSONObject(i).has("item_type_details")) {
                                 JSONArray childJsonArray = jsonArray4.getJSONArray(i);
                                 JSONObject contentJsonObject = childJsonArray.getJSONObject(0);
                                 if (contentJsonObject.has("item_type_name")) {

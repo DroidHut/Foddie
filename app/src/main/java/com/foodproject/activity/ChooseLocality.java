@@ -1,9 +1,18 @@
 package com.foodproject.activity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Typeface;
+import android.location.Location;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Handler;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,16 +26,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.foodproject.R;
+import com.foodproject.util.MyLocation;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.common.api.Result;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.data.DataBuffer;
 import com.google.android.gms.location.places.AutocompleteFilter;
 import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.PlaceDetectionApi;
+import com.google.android.gms.location.places.PlaceLikelihood;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+
+import java.util.Iterator;
 
 
 public class ChooseLocality extends AppCompatActivity implements View.OnClickListener {
@@ -45,6 +61,7 @@ public class ChooseLocality extends AppCompatActivity implements View.OnClickLis
     private AutocompleteFilter zzaRl;
     @Nullable
     private PlaceSelectionListener zzaRm;
+    private int MULTIPLE_PERMISSIONS = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +89,7 @@ public class ChooseLocality extends AppCompatActivity implements View.OnClickLis
 
         button.setOnClickListener(this);
         editSearch.setOnClickListener(this);
+        textLocation1.setOnClickListener(this);
 
     }
 
@@ -91,8 +109,9 @@ public class ChooseLocality extends AppCompatActivity implements View.OnClickLis
                 zzzG();
 
                 break;
+            case R.id.textLocation1:
+                break;
         }
-
     }
 
     private void zzzG() {
@@ -138,6 +157,38 @@ public class ChooseLocality extends AppCompatActivity implements View.OnClickLis
         this.editSearch.setText(text);
         //this.zzzF();
     }
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        for (int i = 0, len = permissions.length; i < len; i++) {
+            String permission = permissions[i];
+            if (ActivityCompat.checkSelfPermission(ChooseLocality.this, permission) == PackageManager.PERMISSION_GRANTED) {
+                if (requestCode == MULTIPLE_PERMISSIONS) {
+                    Toast.makeText(ChooseLocality.this, "Permissions granted", Toast.LENGTH_SHORT).show();
+                } else if (ActivityCompat.checkSelfPermission(ChooseLocality.this, permission) == PackageManager.PERMISSION_DENIED) {
+                    if (Build.VERSION.SDK_INT >= 23) {
+                        Toast.makeText(ChooseLocality.this, "Go to Settings and Grant the permission to use this feature.", Toast.LENGTH_SHORT).show();
+                        // User selected the Never Ask Again Option
+                        if (ChooseLocality.this == null) {
+                            return;
+                        }
+                        new Handler().postDelayed(new Runnable() {
+                            public void run() {
+                                Intent i = new Intent();
+                                i.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                                i.addCategory(Intent.CATEGORY_DEFAULT);
+                                i.setData(Uri.parse("package:" + getPackageName()));
+                                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                i.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                                i.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+                                startActivity(i);
+                            }
+                        }, 3000);
 
 
+                    } else {
+                        Toast.makeText(ChooseLocality.this, "Permission denied", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            }}}
+   
 }
